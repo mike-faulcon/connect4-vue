@@ -1,0 +1,27 @@
+<!--<div id="game">-->
+<div class="game">
+
+  <h1 class="mb-4">{{GetGameMessage()}}</h1>    
+  
+  <h4 class="mb-3 floatRight" @click="resetClick"><img src="~assets/images/logo.png" height="36" alt="">Reset</h4>
+
+  <div class="slots">
+      <div v-for="(row,r) in slots" class="slotRow">
+          <!--{{'Row: ' + r}}-->
+          <!--{{row}}-->
+          <div v-for="(col,c) in row" class="slotCol">
+            <!--{{r + ',' + c}}            -->
+            <!--{{r + ',' + c + ':' + col}}-->
+
+            <tokenSlot 
+              :row="r"
+              :col="c"
+              :value="col"
+              v-on:tokenClick="slotClick">
+            </tokenSlot>
+            
+          </div>
+      </div>
+  </div>
+
+</div>

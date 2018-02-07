@@ -1,0 +1,38 @@
+.game {
+    .floatRight {
+        float: right;
+    }
+    .slots {
+        display: flex;
+        flex-direction: column;
+        // width: 80%;
+
+        .slotRow {
+            display: flex;
+            
+            .slotCol {
+                // width: 48px;
+                // height: 48px;
+                // margin: 4px;            
+
+                .tokenSlot {
+                    width: 48px;
+                    height: 48px;
+                    // padding: 4px;
+                    margin: 4px;            
+                    border: 2px dashed grey;            
+                    border-radius: 25px;
+                    // background-color: cyan;
+                }
+
+                .p1 {
+                    background-color: blue;
+                }
+
+                .p2 {
+                    background-color: red;
+                }
+            }
+        }
+    }
+}
