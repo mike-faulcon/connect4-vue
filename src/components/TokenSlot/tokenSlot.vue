@@ -48,6 +48,6 @@
           console.log('this.props:', this.props);
           // console.log('done()');
       }
-    });
+    }
 
 </script>
