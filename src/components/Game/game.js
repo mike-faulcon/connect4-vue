@@ -159,6 +159,13 @@ export default Vue.extend({
       this.$forceUpdate();  // temp
     },
 
+    backClick() {
+      console.log('backClick');
+      if (this.last != 0) {
+        this.pop(this.last);
+      }
+    },
+
     resetClick() {
       console.log('resetClick');
       this.init();
@@ -206,6 +213,8 @@ export default Vue.extend({
       // this.slots[nextSlot,col] = player;
       this.slots[nextSlot][col] = this.player;
       console.log('this.slots[nextSlot][col]:', this.slots[nextSlot][col]);
+
+      this.last = col;
       
       // PrintSlots();
       
@@ -217,10 +226,34 @@ export default Vue.extend({
       
       const turnMsg = this.GetTurnMessage(this.player);
       
-      // change turn
-      this.player = (this.player == 1) ? 2 : 1;
-      
+      this.changeTurn();      
+
       return turnMsg;
+    },
+
+    pop(col) {
+      console.log('pop', col);
+
+      // start from the top (row index 0) and work your way down until you find a token/play
+      for (let r = 0; r < ROW_COUNT; r++) {
+        if (this.slots[r][col]) {
+            this.slots[r][col] = 0;
+            break;
+        }
+      }
+
+      this.changeTurn();
+      
+      // for now, back button only works once
+      // -- history is only one move deep
+      // initialize "last" value
+      this.last = 0;
+
+      this.$forceUpdate();  // temp
+    },
+
+    changeTurn() {
+      this.player = (this.player == 1) ? 2 : 1;
     }
 
   },
@@ -233,11 +266,12 @@ export default Vue.extend({
           console.log('slotClick()', row, col);
       }
   },
-  data() {  
+  data() {
     return {
       // test: 'mike test',
       player: 1,
       winner: 0,
+      last: 0,  // store last move (for most simplest of back/oops handling)
       // slots: [ROW_COUNT][COL_COUNT]
       slots: [[]]
       // slots: []      

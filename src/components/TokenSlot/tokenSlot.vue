@@ -22,12 +22,8 @@
           required: true
         },
 
-        // value: 0
         value: {
-          // type: Object,
-          // type: String,
           type: Number,      
-          // required: true
           required: false      
         }
       },
